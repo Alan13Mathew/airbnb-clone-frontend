@@ -9,6 +9,9 @@ export const setLoadingStateHandler = (handler) => {
 const api = axios.create({
   baseURL: "http://localhost:3000/api",
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/json"
+  }
 });
 
 
@@ -46,6 +49,11 @@ api.interceptors.response.use((response)=>{
 export const authApi = {
     register: (data) => api.post("/auth/register", data),
     login: (data) => api.post("/auth/login", data),
+}
+
+export const hotelApi = {
+    getAllHotels: () => api.get("/hotels"),
+    getHotelById: (id) => api.get(`/hotels/${id}`),
 }
 
 export default api;

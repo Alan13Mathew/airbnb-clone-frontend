@@ -6,13 +6,13 @@ import { useLoading } from "./Services/LoadingContext";
 
 export default function ProtectedRoutes({ children }) {
   const { user, loading: authLoading } = useAuth();
-  const { setLoading } = useLoading();
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 500);
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 500);
     return () => clearTimeout(timer);
-  }, [setLoading]);
+  }, [setIsLoading]);
 
   if (authLoading) {
     return <Loader type="travel" />;

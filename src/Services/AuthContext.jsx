@@ -44,14 +44,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = async () => {
+  const logout = () => {
     setLoading(true);
-    localStorage.clear();
-    setUser(null);
-    setTimeout(() => {
+    try {
+      localStorage.clear();
+      setUser(null);
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 800);
+    } finally {
       setLoading(false);
-      navigate("/login");
-    }, 800);
+    }
   };
 
   const updateUser = async (data) => {
